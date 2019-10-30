@@ -1,4 +1,5 @@
 <?php
+ session_start();
 require_once 'config.php';
 
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -16,16 +17,15 @@ $query = "SELECT username FROM utilizatori WHERE username = '$user' AND parola =
 $data = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($data)==1){
-    session_start();
- 
-     $_SESSION['access'] = '$user';
-     header("Location: postari.html");
    
-    $row = mysqli_fetch_array($data);
+ 
+     $_SESSION["username"] = $user;
+     $_SESSION['access'] = '$user';
+     header("Location: index.php");
+   
     
-    $user = $row['nume_utilizator'];
     
-    echo  $user . ' succesfully connected to database';
+   
 }
 
  else {

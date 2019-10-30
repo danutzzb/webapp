@@ -13,7 +13,7 @@ $add = "insert into utilizatori(prenume, nume, username, parola)values('$prenume
 
     
 if(mysqli_query($conn, $add) ){
-     
+    header("Location: index.php");
     echo 'User succesfully added to database';
    
  

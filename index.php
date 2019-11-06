@@ -9,8 +9,9 @@ $ses = $_SESSION['username'];
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if(isset($_POST['submit']) && isset($_POST['text']) ){
 $body = $_POST['text'];
-$query = "insert into webapp.postari(post) values ('$body') ";
+$query = "insert into webapp.comentarii(comentariu) values ('$body') ";
 $data = mysqli_query($conn, $query);
+
 //echo $body;
 }
 //var_dump($conn);
@@ -77,14 +78,7 @@ $data = mysqli_query($conn, $query);
         
         <div id="news">
             <article>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus eros eu orci sodales hendrerit nec ac ipsum.
-                   Cras a finibus mauris, id maximus metus. Sed ornare neque at nulla interdum interdum. Sed finibus lacus quis consectetur consequat. 
-                   Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                   Suspendisse suscipit arcu nulla, nec sollicitudin augue elementum eu. Duis pretium pretium neque id egestas. Quisque metus libero, 
-                   fermentum a scelerisque vel,Curabitur eget nisl bibendum lorem rutrum posuere ut faucibus neque. Cras dignissim, nisi et ornare feugiat, tortor odio eleifend 
-                   ante, vitae consectetur neque neque quis lacus. Donec eu sem ligula. Maecenas congue hendrerit turpis eget dignissim. </p>
-                <?php
-                $query = "select post from postari";
+                <p><?php$query = "select news from news";
                 $data = mysqli_query($conn, $query);
                 
                 $result = $data;
@@ -95,7 +89,20 @@ $data = mysqli_query($conn, $query);
                         echo "</div>";
                         echo "<br>";
                     }
-                };
+                }; ?></p>
+                <?php
+//                $query = "select post from postari";
+//                $data = mysqli_query($conn, $query);
+//                
+//                $result = $data;
+//                while ($result = $data->fetch_assoc()){
+//                    foreach ($result as $key=>$value){
+//                        echo "<div id=".'com'.">";
+//                        echo $value;
+//                        echo "</div>";
+//                        echo "<br>";
+//                    }
+//                };
                 ?>
                 <form action="" method="post">
                     <textarea name="text" rows="5" cols="100" placeholder="Comentariul tau aici" ></textarea>

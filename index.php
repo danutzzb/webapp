@@ -1,17 +1,12 @@
 <?php
-
 require_once 'config.php';
 session_start();
-
-$ses = $_SESSION['username'];
-
-
+//$ses = $_SESSION['username'];
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if(isset($_POST['submit']) && isset($_POST['text']) ){
 $body = $_POST['text'];
-$query = "insert into webapp.comentarii(comentariu) values ('$body') ";
+$query = "insert into webapp.comentarii(comment) values ('$body') ";
 $data = mysqli_query($conn, $query);
-
 //echo $body;
 }
 //var_dump($conn);
@@ -22,10 +17,7 @@ $data = mysqli_query($conn, $query);
 //    echo '</pre>';
 //}
 //pr_array($_SESSION);
-
-
         
-
 ?>
 
 <style>
@@ -78,7 +70,9 @@ $data = mysqli_query($conn, $query);
         
         <div id="news">
             <article>
-                <p><?php$query = "select news from news";
+                
+                <?php
+                $query = "select news from news";
                 $data = mysqli_query($conn, $query);
                 
                 $result = $data;
@@ -88,27 +82,16 @@ $data = mysqli_query($conn, $query);
                         echo $value;
                         echo "</div>";
                         echo "<br>";
-                    }
-                }; ?></p>
-                <?php
-//                $query = "select post from postari";
-//                $data = mysqli_query($conn, $query);
-//                
-//                $result = $data;
-//                while ($result = $data->fetch_assoc()){
-//                    foreach ($result as $key=>$value){
-//                        echo "<div id=".'com'.">";
-//                        echo $value;
-//                        echo "</div>";
-//                        echo "<br>";
-//                    }
-//                };
+                        echo "<form action='' method='post'>
+                            <textarea name='text' rows='5' cols='100' placeholder='Comentariul tau aici' ></textarea>
+                            <button type='submit' name='submit'>Posteaza Comentariu</button></form>";
+                            
+                    };
+                };
                 ?>
-                <form action="" method="post">
-                    <textarea name="text" rows="5" cols="100" placeholder="Comentariul tau aici" ></textarea>
-                    <input type="submit" value="Posteaza Comentariu" name="submit">
-                    
-                </form>
+<!--                <form action="" method="post">
+                            <textarea name="text" rows="5" cols="100" placeholder="Comentariul tau aici" ></textarea>
+                            <input type="submit" value="Posteaza Comentariu" name="submit">-->
                 
             </article>
         </div>
@@ -119,6 +102,3 @@ $data = mysqli_query($conn, $query);
     </body>
     
 </html>
-
-
-

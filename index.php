@@ -4,9 +4,9 @@ session_start();
 
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if(isset($_POST['submit']) && isset($_POST['text']) && isset($_GET['news_id'])){
-    $ses = mysqli_real_escape_string($_SESSION['username']);
-    $body = mysqli_real_escape_string($_POST['text']);
-    $news_id = mysqli_real_escape_string($_GET['news_id']);
+    $ses = mysqli_real_escape_string($conn, $_SESSION['username']);
+    $body = mysqli_real_escape_string($conn, $_POST['text']);
+    $news_id = mysqli_real_escape_string($conn, $_GET['news_id']);
     $query = "insert into comentarii(user_id,comment,news_id)
         VALUES ((SELECT user_id FROM utilizatori WHERE username = '$ses'), '$body', $news_id)";
     mysqli_query($conn, $query);

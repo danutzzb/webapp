@@ -2,11 +2,11 @@
 require_once 'config.php';
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if(isset($_POST['submit']) && isset($_POST['text']) ){
-$body = $_POST['text'];
-$query = "insert into webapp.news(news,news_date) values ('$body', CURRENT_TIMESTAMP) ";
-$data = mysqli_query($conn, $query);
+    $body = $_POST['text'];
+    $query = "insert into webapp.news(news,news_date) values ('$body', CURRENT_TIMESTAMP) ";
+    mysqli_query($conn, $query);
 }
-var_dump($conn)
+
 ?>
 
 
